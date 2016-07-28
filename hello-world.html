@@ -1,47 +1,36 @@
-﻿<html>
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/0.7.22/webcomponents.min.js"></script>
-  </head>
-  <body>
-    <strong>Sample Component</strong>
-    <template>
-      <style>
-        strong {
-          color: red;
-        }
-      </style>
-      <p>Hello <strong></strong></p>
-    </template>
-    <hello-world></hello-world>
-    <hello-world name="Matt"></hello-world>
-    <script type="text/javascript">
-      (function(window, document) {
-        //var thatDoc = document;
-        //var thisDoc = (thatDoc._currentScript || thatDoc.currentScript).ownerDocument;
-        var template = document.querySelector('template').content;
+﻿<template>
+  <style>
+    strong {
+      color: red;
+    }
+  </style>
+  <p>Hello <strong></strong></p>
+</template>
+<script type="text/javascript">
+  (function(window, document) {
+    var elementName = 'hello-world';
+    var componentDocument = (document._currentScript || document.currentScript).ownerDocument;
+    var template = componentDocument.querySelector('template').content;
 
-        var HelloWorldProto = Object.create(HTMLElement.prototype);
-        HelloWorldProto.name = 'World';
-        HelloWorldProto.createdCallback = function() {
-          console.log('created');
-          var shadowRoot = window.shadowRoot = this.createShadowRoot();
-          var clone = document.importNode(template, true);
-          shadowRoot.appendChild(clone);
+    var HelloWorldProto = Object.create(HTMLElement.prototype);
+    HelloWorldProto.name = 'World';
+    HelloWorldProto.createdCallback = function() {
+      var shadowRoot = window.shadowRoot = this.createShadowRoot();
+      var clone = document.importNode(template, true);
+      shadowRoot.appendChild(clone);
 
-          if(this.hasAttribute('name')) {
-            this.name = this.getAttribute('name');
-          }
+      if(this.hasAttribute('name')) {
+        this.name = this.getAttribute('name');
+      }
 
-          var strong = shadowRoot.querySelector('strong');
-          strong.textContent = this.name;
+      var strong = shadowRoot.querySelector('strong');
+      strong.textContent = this.name;
 
-          WebComponents.ShadowCSS.shimStyling( shadowRoot, 'hello-world');
-        }
+      WebComponents.ShadowCSS.shimStyling( shadowRoot, elementName);
+    }
 
-        window.HelloWorld = document.registerElement('hello-world', {
-          prototype: HelloWorldProto
-        });
-       })(window, document);
-    </script>
-  </body>
-</html>
+    window.HelloWorld = document.registerElement(elementName, {
+      prototype: HelloWorldProto
+    });
+   })(window, document);
+</script>

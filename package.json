@@ -1,0 +1,15 @@
+{
+  "name": "hello-world-component",
+  "version": "1.0.0",
+  "description": "Simple HelloWorld Web Component",
+  "main": "''",
+  "dependencies": {},
+  "devDependencies": {
+    "express": "^4.14.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mtyeh411",
+  "license": "ISC"
+}
