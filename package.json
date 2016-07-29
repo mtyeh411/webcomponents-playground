@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Simple HelloWorld Web Component",
   "main": "''",
-  "dependencies": {},
+  "dependencies": {
+    "webcomponents.js": "^0.7.22"
+  },
   "devDependencies": {
     "express": "^4.14.0"
   },

@@ -26,7 +26,9 @@
       var strong = shadowRoot.querySelector('strong');
       strong.textContent = this.name;
 
-      WebComponents.ShadowCSS.shimStyling( shadowRoot, elementName);
+      if(WebComponents.ShadowCSS) {
+        WebComponents.ShadowCSS.shimStyling(shadowRoot, elementName);
+      }
     }
 
     window.HelloWorld = document.registerElement(elementName, {
