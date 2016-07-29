@@ -1,0 +1,27 @@
+<script>
+  (function(window, document) {
+    var elementName = 'hello-all'; // must have hyphenated prefix
+
+    var HelloAllProto = Object.create(HTMLElement.prototype);
+    HelloAllProto.createdCallback = function() {
+      var shadowRoot = this.createShadowRoot();
+      var clone = document.createDocumentFragment();
+
+      var names = [
+        {first_name: 'Matt', last_name: 'Yeh'},
+        {first_name: 'John', last_name: 'Doe'}
+      ]
+      names.forEach(function(name) {
+        var component = document.createElement('hello-world');
+        component.setAttribute('name', JSON.stringify(name));
+        clone.appendChild(component);
+      });
+      shadowRoot.appendChild(clone);
+    }
+
+    window.HelloAll = document.registerElement(elementName, {
+      prototype: HelloAllProto
+    });
+
+  })(window, document);
+</script>

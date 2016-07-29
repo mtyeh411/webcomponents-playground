@@ -4,27 +4,28 @@
       color: red;
     }
   </style>
-  <p>Hello <strong></strong></p>
+  <p>Hello <strong class='name'></strong></p>
 </template>
 <script type="text/javascript">
   (function(window, document) {
-    var elementName = 'hello-world';
+    var elementName = 'hello-world'; // must have hyphenated prefix
     var componentDocument = (document._currentScript || document.currentScript).ownerDocument;
     var template = componentDocument.querySelector('template').content;
 
     var HelloWorldProto = Object.create(HTMLElement.prototype);
     HelloWorldProto.name = 'World';
-    HelloWorldProto.createdCallback = function() {
-      var shadowRoot = window.shadowRoot = this.createShadowRoot();
+
+    HelloWorldProto.attachedCallback = function() {
+      var shadowRoot = this.createShadowRoot();
       var clone = document.importNode(template, true);
       shadowRoot.appendChild(clone);
 
       if(this.hasAttribute('name')) {
-        this.name = this.getAttribute('name');
+        var obj = JSON.parse(this.getAttribute('name'));
+        this.name = obj.first_name + ' ' + obj.last_name;
       }
 
-      var strong = shadowRoot.querySelector('strong');
-      strong.textContent = this.name;
+      shadowRoot.querySelector('.name').textContent = this.name;
 
       if(WebComponents.ShadowCSS) {
         WebComponents.ShadowCSS.shimStyling(shadowRoot, elementName);
