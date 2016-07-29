@@ -1,0 +1,44 @@
+<template>
+  <h3 class='show_title'></h3>
+  <p class='release_year'></p>
+  <p class='rating'></p>
+  <img class='poster'></p>
+</template>
+
+<script>
+  (function(window, document) {
+    var elementName = 'my-movie';
+    var componentDocument = (document._currentScript || document.currentScript).ownerDocument;
+    var template = componentDocument.querySelector('template').content;
+
+    var MovieProto = Object.create(HTMLElement.prototype);
+
+    MovieProto.attachedCallback = function() {
+      var shadowRoot = this.createShadowRoot();
+      var clone = document.importNode(template, true);
+      shadowRoot.appendChild(clone);
+
+      if(this.hasAttribute('movie')) {
+        var movie = JSON.parse(this.getAttribute('movie'));
+        for(key in movie) {
+          var el = shadowRoot.querySelector('.' + key);
+          if(el) {
+            if(el.nodeName == 'IMG') {
+              el.setAttribute('src', movie[key]);
+            } else {
+              el.textContent = movie[key];
+            }
+          }
+        }
+      }
+
+      if(WebComponents.ShadowCSS) {
+        WebComponents.ShadowCSS.shimStyling(shadowRoot, elementName);
+      }
+    }
+
+    document.registerElement(elementName, {
+      prototype: MovieProto
+    });
+   })(window, document);
+</script>

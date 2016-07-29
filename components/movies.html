@@ -1,0 +1,41 @@
+<script>
+  (function(window, document) {
+    var elementName = 'my-movies';
+    var base_url = 'http://netflixroulette.net/api/api.php'
+
+    var RecipesProto = Object.create(HTMLElement.prototype);
+    RecipesProto.createdCallback = function() {
+      var shadowRoot = this.createShadowRoot();
+      var clone = document.createDocumentFragment();
+
+      if(this.hasAttribute('actor')) {
+        var query = this.getAttribute('actor');
+        var url = base_url + '?actor=' + query
+        var xhr = new XMLHttpRequest();
+
+        xhr.onload = function() {
+          var movies = JSON.parse(xhr.responseText);
+          if(movies instanceof Array) {
+            movies.forEach(function(movie) {
+              var component = document.createElement('my-movie');
+              component.setAttribute('movie', JSON.stringify(movie));
+              clone.appendChild(component);
+            });
+            shadowRoot.appendChild(clone);
+          }
+        }
+
+        xhr.onerror = function() {
+          console.log('Error requesting for ' + query);
+        }
+
+        xhr.open('GET', url, true);
+        xhr.send();
+      }
+    }
+
+    document.registerElement(elementName, {
+      prototype: RecipesProto
+    });
+  })(window, document);
+</script>
