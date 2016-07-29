@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <script src='/scripts/webcomponents.min.js'></script>
+    <link rel="import" href="components/hello-all.html">
+    <link rel="import" href="components/hello-world.html">
+  </head>
+  <body>
+    <strong>Features:</strong>
+    <ul>
+      <li>
+        &ltstrong&gt elements apply styles that respect the Shadow DOM boundary (only &ltstrong&gt elements within the component should be red)
+      </li>
+      <li>
+        Custom Elements &lthello-all/&gt and &lthello-world/&gt
+      </li>
+      <li>
+        HTML Import of hello-all and hello-world components
+      </li>
+      <li>
+        Parent-Child relationship between HelloAll and HelloWorld
+      </li>
+    </ul>
+    <hello-all></hello-all>
+  </body>
+</html>
