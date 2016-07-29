@@ -4,6 +4,7 @@
   "description": "Simple HelloWorld Web Component",
   "main": "''",
   "dependencies": {
+    "angular": "^1.5.8",
     "webcomponents.js": "^0.7.22"
   },
   "devDependencies": {

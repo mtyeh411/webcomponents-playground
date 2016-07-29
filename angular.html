@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <script src='/scripts/angular.min.js'></script>
+    <script src='/scripts/webcomponents.min.js'></script>
+    <script>
+      angular.module('componentTester', []);
+      angular.module('componentTester').run(['$rootScope', function($rootScope) {
+        $rootScope.names = [
+          {first_name: 'Matt', last_name: 'Yeh'},
+          {first_name: 'John', last_name: 'Doe'}
+        ]
+      }]);
+    </script>
+    <link rel="import" href="components/hello-all.html">
+    <link rel="import" href="components/hello-world.html">
+  </head>
+  <body ng-app='componentTester'>
+    <strong>Features:</strong>
+    <ul>
+      <li>uses HelloWorld component within an ng-repeat where the names for the HelloWorld component are defined in scope</li>
+    </ul>
+    <div ng-repeat='name in names'>
+      <hello-world name='{{name}}'/>
+    </div>
+  </body>
+</html>

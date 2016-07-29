@@ -6,6 +6,7 @@ var PORT = 3002;
 
 app.use(express.static(__dirname));
 app.use('/scripts', express.static(__dirname + '/node_modules/webcomponents.js/'));
+app.use('/scripts', express.static(__dirname + '/node_modules/angular/'));
 
 app.get('/', function(req, res) {
  res.sendFile(path.join(__dirname + '/index.html'));
