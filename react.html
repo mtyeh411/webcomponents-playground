@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <script src='/scripts/webcomponents.min.js'></script>
+    <script src='/scripts/react.js'></script>
+    <script src='/scripts/react-dom.js'></script>
+    <link rel="import" href="components/hello-all.html">
+    <link rel="import" href="components/hello-world.html">
+  </head>
+  <body>
+    <div id='container'></div>
+    <script>
+      var ComponentTester = React.createClass({
+        getInitialState: function() {
+          return {
+            names: [{first_name: 'Matt', last_name: 'Yeh'}, {first_name: 'John', last_name: 'Doe'}]
+          };
+        },
+        render: function render() {
+          var nameComponents = this.state.names.map(function(name) {
+            return React.createElement('hello-world', { name: JSON.stringify(name) });
+          });
+          return React.createElement('div', null, nameComponents);
+        }
+      });
+      ReactDOM.render(React.createElement(ComponentTester,null), document.getElementById('container'));
+    </script>
+  </body>
+</html>

@@ -5,6 +5,8 @@
   "main": "''",
   "dependencies": {
     "angular": "^1.5.8",
+    "react": "^15.3.0",
+    "react-dom": "^15.3.0",
     "webcomponents.js": "^0.7.22"
   },
   "devDependencies": {
