@@ -19,12 +19,14 @@
     "gulp-inject": "^4.1.0",
     "gulp-load-plugins": "^1.2.4",
     "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
     "gulp-sass": "^2.3.2",
     "gulp-uglify": "^2.0.0",
-    "gulp-util": "^3.0.7"
+    "gulp-util": "^3.0.7",
+    "gulp-vulcanize": "^6.1.0"
   },
   "scripts": {
-    "start": "gulp components && node server.js",
+    "start": "gulp vulcanize && node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "mtyeh411",

@@ -2,6 +2,7 @@ gulp = require('gulp')
 fs = require('fs')
 path = require('path')
 $ = require('gulp-load-plugins')()
+glob = require('glob')
 
 surroundTags =
   css: '<style>'
@@ -30,8 +31,6 @@ gulp.task 'scripts', ->
   gulp.src 'components/**/*.coffee'
     .pipe $.coffee()
       .on 'error', $.util.log
-    .pipe $.uglify()
-      .on 'error', $.util.log
     .pipe gulp.dest('build/')
 
 gulp.task 'markups', ->
@@ -48,9 +47,19 @@ gulp.task 'components', ['styles', 'scripts', 'markups'], ->
 
   components().map (component) ->
     gulp.src 'components/component.html'
+      .pipe $.replace(/{\$file}/g, component)
       .pipe $.inject(gulp.src(path.join('build', component, '*.css')), injectOptions )
       .pipe $.inject(gulp.src(path.join('build', component, '*.js')), injectOptions )
       .pipe $.inject(gulp.src(path.join('build', component, '*.html')), injectOptions )
       .pipe $.rename(component + '.html')
-      .pipe gulp.dest(path.join('dist'))
+      .pipe gulp.dest('dist')
         .on 'end', -> $.util.log('Componentized ', component)
+
+gulp.task 'vulcanize', ['components'], ->
+  files = glob.sync 'components/*.vulcanized.html'
+  files.forEach (file) ->
+    gulp.src file
+      .pipe $.vulcanize
+        excludes: ['scripts\/']
+      .pipe gulp.dest('dist')
+        .on 'end', -> $.util.log 'Vulcanized', path.basename(file)

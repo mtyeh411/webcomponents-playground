@@ -1,7 +1,7 @@
 do (window, document) ->
   elementName = 'hello-name' # must have hyphenated prefix
   componentDocument = (document._currentScript || document.currentScript).ownerDocument
-  template = componentDocument.querySelector('template').content
+  template = componentDocument.querySelector('template#hello-name').content
 
   HelloNameProto = Object.create HTMLElement.prototype
   HelloNameProto.name = 'Friend'

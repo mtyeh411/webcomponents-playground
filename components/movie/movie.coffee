@@ -1,7 +1,7 @@
 do (window, document) ->
   elementName = 'my-movie'
   componentDocument = (document._currentScript || document.currentScript).ownerDocument
-  template = componentDocument.querySelector('template').content
+  template = componentDocument.querySelector('template#movie').content
 
   MovieProto = Object.create HTMLElement.prototype
   MovieProto.attachedCallback = ->
