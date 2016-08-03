@@ -21,6 +21,9 @@ gulp.task 'styles', ->
   gulp.src 'components/**/*.scss'
     .pipe $.sass()
       .on 'error', $.util.log
+    .pipe $.cleanCss({debug: true}, (details) ->
+      $.util.log "#{details.name}: minified by #{details.stats.originalSize-details.stats.minifiedSize} bytes in #{details.stats.timeSpent}ms"
+    )
     .pipe gulp.dest('build/')
 
 gulp.task 'scripts', ->
