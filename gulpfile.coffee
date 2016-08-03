@@ -28,7 +28,7 @@ gulp.task 'styles', ->
     .pipe gulp.dest('build/')
 
 gulp.task 'scripts', ->
-  gulp.src 'components/**/*.coffee'
+  gulp.src ['components/**/*.coffee', '!components/**/*.spec.coffee']
     .pipe $.coffee()
       .on 'error', $.util.log
     .pipe gulp.dest('build/')

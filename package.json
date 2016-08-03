@@ -23,7 +23,13 @@
     "gulp-sass": "^2.3.2",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
-    "gulp-vulcanize": "^6.1.0"
+    "gulp-vulcanize": "^6.1.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^1.1.2",
+    "karma-coffee-preprocessor": "^1.0.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-phantomjs-launcher": "^1.0.1",
+    "phantomjs": "^2.1.7"
   },
   "scripts": {
     "start": "gulp vulcanize && node server.js",
