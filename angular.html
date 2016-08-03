@@ -11,8 +11,7 @@
         ]
       }]);
     </script>
-    <link rel="import" href="components/hello-all.html">
-    <link rel="import" href="components/hello-world.html">
+    <link rel="import" href="dist/hello-name.html">
   </head>
   <body ng-app='componentTester'>
     <strong>Features:</strong>
@@ -20,7 +19,7 @@
       <li>uses HelloWorld component within an ng-repeat where the names for the HelloWorld component are defined in scope</li>
     </ul>
     <div ng-repeat='name in names'>
-      <hello-world name='{{name}}'/>
+      <hello-name name='{{name}}'/>
     </div>
   </body>
 </html>
