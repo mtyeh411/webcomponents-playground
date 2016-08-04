@@ -18,7 +18,7 @@ contentsOnly = (filePath, file) ->
   tag = surroundTags[extension] || ''
   "#{tag} #{file.contents.toString('utf8')} #{tag.replace('<', '</')}"
 
-componentsTaskDeps = if process.env.NODE_ENV=='production' then ['styles:prod', 'scripts'] else ['styles', 'scripts', 'markups']
+componentsTaskDeps = if process.env.NODE_ENV=='debug' then ['styles', 'scripts', 'markups'] else ['styles:prod', 'scripts']
 
 gulp.task 'styles', ->
   gulp.src 'components/**/*.scss'
