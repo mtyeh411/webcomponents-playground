@@ -5,6 +5,7 @@
   "main": "''",
   "dependencies": {
     "angular": "^1.5.8",
+    "bootstrap-sass": "^3.3.7",
     "react": "^15.3.0",
     "react-dom": "^15.3.0",
     "webcomponents.js": "^0.7.22"
@@ -22,6 +23,7 @@
     "gulp-replace": "^0.5.4",
     "gulp-sass": "^2.3.2",
     "gulp-uglify": "^2.0.0",
+    "gulp-uncss": "^1.0.6",
     "gulp-util": "^3.0.7",
     "gulp-vulcanize": "^6.1.0",
     "jasmine-core": "^2.4.1",

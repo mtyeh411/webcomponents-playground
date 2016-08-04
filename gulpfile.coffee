@@ -20,9 +20,20 @@ contentsOnly = (filePath, file) ->
 
 gulp.task 'styles', ->
   gulp.src 'components/**/*.scss'
-    .pipe $.sass()
-      .on 'error', $.util.log
-    .pipe $.cleanCss({debug: true}, (details) ->
+    .pipe $.sass({
+      #outputStyle: 'compressed'
+      includePaths: ['./node_modules/bootstrap-sass/assets/stylesheets']
+    })
+      .on 'error', $.sass.logError
+    .pipe gulp.dest('build/')
+
+gulp.task 'styles:prod', ['styles', 'markups'], ->
+  gulp.src 'build/**/*.css'
+    .pipe $.uncss({
+      html: ['build/**/*.html']
+      report: true
+    })
+    .pipe $.cleanCss({debug: true, keepSpecialComments: 0}, (details) ->
       $.util.log "#{details.name}: minified by #{details.stats.originalSize-details.stats.minifiedSize} bytes in #{details.stats.timeSpent}ms"
     )
     .pipe gulp.dest('build/')
