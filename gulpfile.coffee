@@ -18,6 +18,8 @@ contentsOnly = (filePath, file) ->
   tag = surroundTags[extension] || ''
   "#{tag} #{file.contents.toString('utf8')} #{tag.replace('<', '</')}"
 
+componentsTaskDeps = if process.env.NODE_ENV=='production' then ['styles:prod', 'scripts'] else ['styles', 'scripts', 'markups']
+
 gulp.task 'styles', ->
   gulp.src 'components/**/*.scss'
     .pipe $.sass({
@@ -50,7 +52,7 @@ gulp.task 'markups', ->
       .on 'error', $.util.log
     .pipe gulp.dest('build/')
 
-gulp.task 'components', ['styles', 'scripts', 'markups'], ->
+gulp.task 'components', componentsTaskDeps, ->
   injectOptions =
     transform: contentsOnly
     quiet: true

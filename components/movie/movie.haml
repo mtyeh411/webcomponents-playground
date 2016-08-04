@@ -1,4 +1,15 @@
-%h3.show_title
-%p.release_year
-%p.rating
-%img.poster
+.movie-tile
+  .thumbnail-overlay.panel.panel-default.no-margin
+    %img.poster
+  .well.well-sm.details
+    .well-container.row
+      .well-title.col-md-8.col-xs-12.no-padding
+        .show_title.h5.text-ellipsis.full-width.no-margin.inline-block.center-sm
+        .text-muted
+          .release_year.ellipsis-xs
+        .text-muted
+          %span.rating
+          %span &nbsp;of 5
+  .well.well-sm.details
+    .well-container
+      .summary.ellipsis-md
